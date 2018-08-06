@@ -20,7 +20,9 @@ Generally, I would recommend setting threads to 250 on Mac systems and 1000 on K
 
 Usage:
 
-python3 jenkins-hunter.py
+1. pip3 install -r requirements.txt
+
+2. python3 jenkins-hunter.py
 
 The enter IP block and thread count when prompted.
 
