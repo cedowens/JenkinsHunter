@@ -28,9 +28,13 @@ The enter IP block and thread count when prompted.
 
 -----------------------------------------
 
+I have seen good performance when running this script with 1000 threads. On Kali linux distros, you should be able to run it with 1000 threads with no issues or changes needed. If running on Mac, I recommend following the steps below to up the ulimit on Mac to allow for at least 1000 threads:
+
 STEPS TO PERSISTENTLY INCREASE ulimit on Mac and Linux to allow for more threads:
 
 https://unix.stackexchange.com/questions/108174/how-to-persistently-control-maximum-system-resource-consumption-on-mac
+
+----------------------------------------
 
 DISCLAIMER
 
