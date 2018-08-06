@@ -24,7 +24,7 @@ Usage:
 
 2. python3 jenkins-hunter.py
 
-The enter IP block and thread count when prompted.
+The enter IP block, port, and thread count when prompted.
 
 -----------------------------------------
 
