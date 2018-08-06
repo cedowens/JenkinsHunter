@@ -16,6 +16,7 @@ Since this is opens connections to ports and IPs concurrently, you'll need to se
 
 Generally, I would recommend setting threads to 250 on Mac systems and 1000 on Kali or other Linux distros unless you follow the steps below to up the ulimit cap on your system.
 
+----------------------------------------
 
 Usage:
 
@@ -23,6 +24,7 @@ python3 jenkins-hunter.py
 
 The enter IP block and thread count when prompted.
 
+-----------------------------------------
 
 STEPS TO PERSISTENTLY INCREASE ulimit on Mac and Linux to allow for more threads:
 
