@@ -97,7 +97,7 @@ for host in portopenlist:
             authjenkins.append(host)
         else:
             pass
-    except requets.exceptions.ConnectionError:
+    except requests.exceptions.ConnectionError:
         pass
 
 if unauthjenkins != []:
