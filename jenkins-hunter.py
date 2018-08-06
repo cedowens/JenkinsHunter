@@ -30,7 +30,6 @@ iprange = input("Enter IP range to check: ").strip()
 port = input("Enter port you want to check: ").strip()
 numthreads = input("Enter the number of threads (For Mac, use a max of 250 unless you up the ulimit...on kali and most linux distros use a max of 1000 unless you up the ulimit): ").strip()
 port2 = int(port)
-outfile = open("outfile.txt","w")
 portopenlist = []
 def Connector(ip):
     try:
