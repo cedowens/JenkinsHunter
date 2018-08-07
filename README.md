@@ -1,6 +1,6 @@
 # Jenkins Hunter
 
-Python3 script that uses a queue and threads to concurrently sweep an IP block for the port specified and then checks for unauthenticated Jenkins instances.
+Python3 script that uses a queue and threads to concurrently sweep an IP block for unauthenticated Jenkins instances on the default port of 8080.
 
 This can be useful for both blue and red teams. From a red team perspective, unauthenticated Jenkins hosts provide quick initial access points for attackers and this script will help find these hosts quicker. From a blue team perspective, this script can be proactively run to identify unauthenticated Jenkins and remediate them before an attacker does.
 
@@ -24,7 +24,7 @@ Usage:
 
 2. python3 jenkins-hunter.py
 
-The enter IP block, port, and thread count when prompted.
+The enter IP block and thread count when prompted.
 
 -----------------------------------------
 
