@@ -60,7 +60,7 @@ def threader():
 def jenkinschecker(host):
     url = "http://" + host + ":" + str(port2) + "/script"
     try:
-        response = requests.get(url)
+        response = requests.get(url, timeout=1)
         if (response.status_code == 200 and 'Jenkins' in response.text and 'Console' in response.text):
             print("+"*40)
             print("\033[91mHost with unauthenticated Jenkins:\033[0m")
