@@ -2,6 +2,12 @@
 
 Python3 script that uses a queue and threads to concurrently sweep an IP block for unauthenticated Jenkins instances on the default port of 8080.
 
+This script checks for:
+
+1. Jenkins hosts allowing unauthenticated access to the /script console page
+
+2. Jenkins hosts allowing unauthenticated execution of build jobs (which can be used to launch shell commands)
+
 This can be useful for both blue and red teams. From a red team perspective, unauthenticated Jenkins hosts provide quick initial access points for attackers and this script will help find these hosts quicker. From a blue team perspective, this script can be proactively run to identify unauthenticated Jenkins and remediate them before an attacker does.
 
 Since this script uses threading to run faster, you must first check the ulimit set on your host.
