@@ -16,9 +16,9 @@ print("*                                                                        
 print("*                      |          __   |   __   __                            *")
 print("*                      |__  |  | |  | _|_ |__| |  |                           *")
 print("*                      |  | |__| |  |  |   \__ |                              *")
-print("*                                                                             *")  
-print("* Jenkins Hunter v1.0                                                         *")
-print("* Author: Cedric Owens (@cedowens)                                            *")
+print("*                                                                             *")
+print("* Jenkins Hunter v2.0                                                         *")
+print("* @cedowens                                                                   *")
 print("* Independent Project                                                         *")
 print("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\033[0m")
 
@@ -43,9 +43,7 @@ def Connector(ip):
             print("\033[92mPort " + str(port2) + " OPEN on %s\033[0m" % str(ip))
             outfile.write("Port " + str(port2) + " OPEN on %s\n" % str(ip))
             portopenlist.append(str(ip))
-        else:
-            print(" " + str(ip) + ":" + str(port2))
-        
+
     except Exception as e:
         print(e)
 
@@ -59,8 +57,10 @@ def threader():
 
 def jenkinschecker(host):
     url = "http://" + host + ":" + str(port2) + "/script"
+    url2 = "http://" + host + ":" + str(port2) + "/view/default/newJob"
     try:
         response = requests.get(url, timeout=1)
+        response2 = requests.get(url2, timeout=1)
         if (response.status_code == 200 and 'Jenkins' in response.text and 'Console' in response.text):
             print("+"*40)
             print("\033[91mHost with unauthenticated Jenkins:\033[0m")
@@ -79,6 +79,15 @@ def jenkinschecker(host):
             authjenkins.append(host)
         else:
             pass
+
+        if (response2.status_code == 200 and 'build' in response.text):
+            print("+"*40)
+            print("\033[91mJenkins host allowing unauthenticated build jobs (can run shell commands):\033[0m")
+            outfile.write("Jenkins host allowing unauthenticated build jobs (can run shell commands):\n")
+            outfile.write(url2)
+            outfile.write("\n")
+            unauthjenkins.append(host)
+            print(url2)
     except requests.exceptions.RequestException:
         pass
 
@@ -95,7 +104,7 @@ q = Queue()
 for ip in ipaddress.IPv4Network(iprange):
     count = count + 1
     iplist.append(str(ip))
-    
+
 for x in range(int(numthreads)):
     t = threading.Thread(target=threader)
     t.daemon = True
@@ -135,7 +144,9 @@ if unauthjenkins != []:
     print("def proc = 'cmd.exe /c <command>'.execute()")
     print("proc.waitForKill(1000)")
     print('println "out> $sout err> $serr"')
-
+    print("+"*40)
+    print("If any Jenkins hosts found allowing unauthenticated build jobs, you can simply run a single build step with an Execute Shell command, save, build, and view console output to see the results of your command")
+    print("+"*40)
 if unauthjenkins == []:
     print("+"*40)
     print("No instances of unauthenticated Jenkins found.")
@@ -145,7 +156,7 @@ if authjenkins == []:
     print("No instances of authenticated Jenkins found.")
     outfile.write("No instances of authenticated Jenkins found.\n")
 
-outfile.close()        
+outfile.close()
 print("+"*40)
 print("DONE!")
 print("Data written to outfile.txt in the current directory.")
